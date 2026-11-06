@@ -6,7 +6,7 @@ All notable changes to this package are documented here. The format follows
 
 ## [Unreleased]
 
-## [0.1.0] - unreleased
+## [0.1.0] - 2026-11-06
 
 First release, extracted from `rosame` 0.1.0 (`rosame.planning_structs`), where these structures were
 developed.
