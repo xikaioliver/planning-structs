@@ -39,6 +39,13 @@ print(model)
 trace = Trace(objects=[("r1", "room"), ("r2", "room")],
               states=[["(robot-at r1)"], ["(robot-at r2)"]],
               actions=["(move r1 r2)"])
+
+# Data in its own order: name the entries of vector states and the actions integers refer to.
+trace = Trace(objects=[("r1", "room"), ("r2", "room")],
+              states=[[1.0, 0.0], [0.0, 1.0]],
+              actions=[0],
+              proposition_order=["(robot-at r1)", "(robot-at r2)"],
+              action_order=["(move r1 r2)", "(move r2 r1)"])
 ```
 
 ## Conventions

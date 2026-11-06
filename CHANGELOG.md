@@ -6,6 +6,13 @@ All notable changes to this package are documented here. The format follows
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-11-06
+
+### Added
+- `Trace.proposition_order` and `Trace.action_order` (optional): the data's own order of the entries
+  of vector states, and of the actions that integer actions refer to. Both default to `None`, so
+  existing code is unaffected.
+
 ## [0.1.0] - 2026-11-06
 
 First release, extracted from `rosame` 0.1.0 (`rosame.planning_structs`), where these structures were

@@ -10,7 +10,7 @@ Atoms and actions may be written "(in s1 r2)", "in s1 r2", ("in", "s1", "r2") or
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Any, Sequence, Tuple
+from typing import Any, Optional, Sequence, Tuple
 
 
 @dataclass
@@ -20,13 +20,23 @@ class Trace:
     objects  [(name, type), ...]: every object the states and actions mention, including domain
              constants.
     states   T + 1 states. Each state is an iterable of true atoms, a dict {atom: probability} (atoms
-             not listed have probability 0), or a vector of probabilities over the propositions of
-             Instance(domain, objects), in their order; a whole [T + 1, P] array is also accepted.
-    actions  T actions; None marks an unknown action.
+             not listed have probability 0), or a vector of probabilities; a whole [T + 1, P] array
+             is also accepted. Vector entries follow `proposition_order` if given, otherwise the
+             propositions of Instance(domain, objects) in their order.
+    actions  T actions, each an action (e.g. "(move r1 r2)"), an integer, or None for an unknown
+             action. Integers index `action_order` if given, otherwise Instance(domain, objects).actions.
+
+    Optional, for data that comes in its own order:
+    proposition_order  the atoms naming the entries of vector states, in the data's order.
+    action_order       the actions that integer actions refer to, in the data's order.
+
+    These fields only describe the data; programs that consume traces resolve and validate them.
     """
     objects: Sequence[Tuple[str, str]]
     states: Any
     actions: Sequence[Any]
+    proposition_order: Optional[Sequence[Any]] = None
+    action_order: Optional[Sequence[Any]] = None
 
     def __post_init__(self) -> None:
         if hasattr(self.states, "__len__") and len(self.states) != len(self.actions) + 1:
