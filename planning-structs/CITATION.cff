@@ -1,0 +1,13 @@
+cff-version: 1.2.0
+message: "If you use planning-structs, please cite it as below."
+title: "planning-structs"
+type: software
+authors:
+  - family-names: Xi
+    given-names: Kai
+  - family-names: Gould
+    given-names: Stephen
+  - family-names: "Thiébaux"
+    given-names: Sylvie
+repository-code: "https://github.com/xikaioliver/planning-structs"
+version: 0.1.0
